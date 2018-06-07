@@ -1,0 +1,155 @@
+
+body{
+
+background-color: #e7ecef
+
+}
+.nav{
+z-index: 1;
+width: calc(100vw-60);
+display: flex;
+position: sticky;
+flex-direction: row;
+justify-content: space-between;
+background-color: #009ddc;
+}
+
+.userlogin{
+display: flex;
+flex-direction: row;
+width: 200px;
+}
+.title{
+  width: 400px;
+  padding-left: 30px;
+  font-size: 40px; 
+}
+.middlesection{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+.polls{
+ margin: 30px;
+padding: 0px;
+border: 2px solid #009ddc;
+border-radius: 10px;
+width: 100%;
+height: 80vh;
+font-size: 28px;
+} 
+.polls h1{
+  background-color: #009ddc;
+  margin: 0px;
+  border-radius: 8px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius: 0px;
+  border-bottom: 2px solid #009ddc;
+  padding-left: 10px;  
+
+}
+
+
+.renderedD3{
+  margin-top: 80px;
+}
+.piechart{
+text-align: center;
+width: 100%;
+}
+button{
+  border-style: none;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 20px;
+}
+input{
+  border-radius:5px;
+  border-style: none;
+  font-size: 20px;
+  width: 80%;
+}
+
+.login{
+  border: 2px solid #6761a8;
+  border-radius: 10px;
+  height: 600px;
+  text-align: center;
+  margin: auto;
+  width: 400px;
+  background-color: #e7ecef;
+}
+
+.loginposition{
+  z-index: 10; 
+  opacity: .3;
+  top: -1000px;
+  transition: top 1s, opacity 2s;
+   position: absolute;
+   width: 100%;
+}
+.hideForm{
+  z-index: 10; 
+  opacity: .3;
+  top: -1000px;
+  transition: top 1s, opacity 2s;
+   position: absolute;
+   width: 100%;
+}
+.centerVoteList{
+  font-size: 20px;
+  width: 200px;
+  margin:auto;
+}
+
+.showForm{
+opacity: 1;
+top: 100px;
+transition: top  1s, opacity 2s;
+}
+
+.postForm{
+ display: flex;
+ flex-direction: column;
+}
+.postForm input,.postForm button{
+width: 50%;
+}
+.poll{
+  display:flex;
+  width: 100%;  
+}
+.poll h3{
+
+ padding: 10px;
+ margin:0px;
+ border-bottom: 2px solid #009ddc;
+
+}
+.poll h3:hover{
+  background-color:#d1d8db;
+}
+.pollSelection{
+  flex-grow: 3;
+}
+.vote{
+  width:100px;
+  border-left: 2px solid #009ddc;
+  border-bottom: 2px solid #009ddc;
+}
+
+.fullWidth{
+height: 80vh;
+width: 100%;
+}
+.profile{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.profile img{
+ margin-top: 30px; 
+}
