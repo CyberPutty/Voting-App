@@ -6,7 +6,9 @@ import {Redirect} from 'react-router-dom';
 
 class Home extends React.Component{
 
-   
+componentDidMount(){
+  this.props.getLatestPolls();
+}
 showContext=(event)=>{
 this.props.showContext(event);
 }
@@ -16,13 +18,15 @@ this.props.vote(event,id);
 render(){
     if (this.props.redirect==='/users'){
       return(<Redirect to={this.props.redirect}/>)
-      this.props.redirected();
+  
     };
 
     return(
 
 <div className= "middlesection">
-<Polls showContext={this.showContext} 
+<Polls
+filter={this.props.filter} 
+showContext={this.showContext} 
 vote={this.showVote} 
 pollsList= {this.props.pollsLatest} 
 currentList="Latest Polls"/>

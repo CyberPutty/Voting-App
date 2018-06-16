@@ -1,74 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const mongoose= require('mongoose');
+
+
+
 /* GET users listing. */
+const models= require('../models');
 
 
-mongoose.connect(process.env.MONGO_URI);
-
-const postSchema= mongoose.Schema({
-  title: String,
-  fields: [String],
-  created_By: String,
-  date_created: Date,
-  votes: [Number]
-});
-const profileSchema= mongoose.Schema({
-name: String,
-avatar: String,
-voted:[String],
-polls: [String],
-googleId: String
-});
-const Post= mongoose.model('Post',postSchema);
-const Profile= mongoose.model('Profile',profileSchema);
 
 
 router.get('/', function(req, res, next) {
-  res.json({
-    username: "fakeUser",
-    id: "fakeId"
-  });
-});
-router.get('/login',function(req,res){
-  console.log(req.query);
-  Profile.findOne({googleId: req.query.user},function(err,data){
-    if(err) console.log(err)
-    console.log(data);
-    if(data){
-        res.json(data);
-    }
-    else{
-      res.json({found: "user not found"});
-    }
-  });
+  res.redirect('http://localhost:3000/users');
 });
 
-router.post('/signup',function(req,res){
-Profile.findOne({googleId: req.body.googleId},function(err,data){
-if(err) console.log(err)
-console.log(data);
-if(data){
-  res.json({found: "user already exists"});
-}
-else{
-  console.log(req.body)
-  const User= new Profile({
-    name: req.body.name,
-    avatar: req.body.imageUrl,
-    voted:[],
-    polls: [],
-    googleId: req.body.googleId
+router.post('/posts/delete',function(req,res){
+console.log(req.body);
+models.Post.findByIdAndRemove(req.body.id,function(err,data){
+    console.log(data);
+  const updatedPolls= req.user.polls;
+  updatedPolls.filter(function(item){
+    return item!==req.body.id
   });
-  User.save(function(err,data){
-    res.json(data);
-  })
-}
+  models.Profile.findByIdAndUpdate(req.user._id,{polls: updatedPolls},function(err,data){
+    if(err) console.log(err);
+    res.json({success:true});
+  });
+
+
 });
+
 });
 router.get('/posts/',function(req,res){
   console.log(req.query);
-  Post.find({ created_By: req.query.user.toString()},function(err,data){
+  models.Post.find({ _id:{ $in: req.user.polls}},function(err,data){
     if (err) console.log(err);
     console.log(data);
     res.json(data);
@@ -83,12 +48,11 @@ let initVotes= [];
 for(let i=0; i<req.body.field.length;i++){
   initVotes.push(0);
 }
-const user= "bob123";
-Post.count({},function(err,data){
-const addPost= new Post({
+const user= req.user
+const addPost= new models.Post({
  title: req.body.title,
  fields: req.body.field,
- created_By: "Bob123",
+ created_By: user.name,
  date_created: new Date(),
  votes: initVotes
 });
@@ -97,17 +61,19 @@ const addPost= new Post({
 
  addPost.save(function(err,data){
    if(err) console.log(err);
-   res.redirect('back');
+  console.log(data);
+  console.log(data,'this is post');
+  let polls= req.user.polls;
+  polls.push(data._id);
+models.Profile.findByIdAndUpdate(req.user._id,{polls: polls},function(err,data){
+  console.log(data,"update successfull");
+  res.json(polls);
+});
+   
  });
-});
+
 });
 
-router.post('/avatar',function(req,resp){
 
-  Profile.findByIdAndUpdate(req.body.userId,{avatar: req.body.avatar},function(err,data){
-    if(err) console.log(err);
-    res.redirect("back");
-  }); 
-});
 
 module.exports = router;

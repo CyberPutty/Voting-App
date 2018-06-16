@@ -5,7 +5,9 @@ import Poll from './poll.js';
 class Polls extends React.Component {
 
 
-
+  filter=(event)=>{
+     this.props.filter(event.target.value,'latest');
+    }  
 
 
   render() {
@@ -16,11 +18,19 @@ class Polls extends React.Component {
     const handleVote= (event,id)=>{
       this.props.vote(event,ref_id);
     }
+    
+    
     const loggedIn= this.props.loggedIn;
     return (
 
-      <div className='polls'>
-        <h1>{this.props.currentList}</h1>
+      <div className='polls' >
+      <div className="search">
+        <h2>{this.props.currentList}</h2>
+        <div>
+        <label>search</label><input onChange={this.filter}/>
+        </div>
+        </div>
+      <div className='pollsList'>
         {this.props.pollsList.map(function (item) {
           ref_id= item._id;
           return <Poll 
@@ -34,7 +44,7 @@ class Polls extends React.Component {
           vote={handleVote} />
         })}
 
-
+</div>
 
       </div>
 

@@ -7,7 +7,7 @@ class Poll extends React.Component {
         this.props.showContext(event);
     }
     showVote= (event)=>{
-        this.props.vote(event);
+        this.props.vote(event,'enabled');
     }
     render() {
 //  

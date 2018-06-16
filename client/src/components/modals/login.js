@@ -1,15 +1,14 @@
 import React from 'react';
 import ModalWrapper from './modalWrapper.jsx';
-import GoogleLogin from 'react-google-login';
+import { StaticRouter ,BrowserRouter, Route, Link,Redirect } from "react-router-dom";
 
 
 
 class Login extends React.Component{
 
-
-
-responseGoogle = (response) => {
-       this.props.responseGoogle(response);
+responseGoogle = () => {
+   
+    return(<Redirect to={'/auth/google'}>Login</Redirect>);
       }
 
     render(){
@@ -18,13 +17,10 @@ responseGoogle = (response) => {
             <div >
           
             <ModalWrapper {...this.props} showOk={false} width={400}>
-            <GoogleLogin
-    clientId="361440010790-rf4b3q3nc0hn8pgps5s8sa2dpnf9k9gd.apps.googleusercontent.com"
-    buttonText="Login with Google"
-    onSuccess={this.responseGoogle}
-    onFailure={this.responseGoogle}
-  />
-  <p>{this.props.credentialFail}</p>
+           
+<a href={'http://localhost:3001/auth/google'}>login</a>
+
+             <p>{this.props.credentialFail}</p>
            </ModalWrapper>
             
 </div>

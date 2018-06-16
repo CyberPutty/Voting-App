@@ -53,7 +53,7 @@ componentDidUpdate (prevProps, prevState) {
         const fields= poll[0].fields;
     
     
-        const colors = ["#f26430", "#009ddc", "#6761a8", "#009b72","#2a2d34"]
+        const colors = ["#f26430", "#009ddc", "#6761a8", "#009b72","#2a2d34"];
     
     
         const chart = d3.select(faux)
@@ -99,20 +99,20 @@ componentDidUpdate (prevProps, prevState) {
         const legend= legendGroup.selectAll('g').data(fields).enter().append('g');
     
         legend.append('rect')
+           
             .attr("fill", function (d, index) {
                 return colors[index];
             })
             .attr("width", function () {
-                return legendWidth / 4
+                return legendWidth / 4;
             })
             .attr("height", function () {
                 console.log(legendHeight / poll[0].fields.length);
                 return legendHeight / poll[0].fields.length
             })
             .attr("y", function (d, index) {
-                //(legendHeight / poll[0].fields.length) * (index)
-                return height- legendHeight;
-            })
+             return ((height)-(legendHeight/poll[0].fields.length*(index+1)));
+         })
             .attr("x", function () {
                 //legendWidth / 3
                 return width-(legendWidth/3);
@@ -124,7 +124,7 @@ componentDidUpdate (prevProps, prevState) {
             .attr("width", 50)
             .attr("height", 50)
             .attr("y", function (d, index) {
-                return height-(legendHeight/2.5)*(index+1);
+                return ((height)-(legendHeight/poll[0].fields.length*(index+.25)));
             })
             .attr("x",function(d,index){
                 return width-(legendWidth/1.5);
@@ -316,16 +316,6 @@ legendEnter
                 console.log(d);
                 return d;
             });
-
-
-
-
-
-
-
-
-
-       
 
     
             

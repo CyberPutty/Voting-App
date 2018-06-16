@@ -12,12 +12,26 @@ position: sticky;
 flex-direction: row;
 justify-content: space-between;
 background-color: #009ddc;
+padding-right: 30px;
 }
 
 .userlogin{
 display: flex;
 flex-direction: row;
 width: 200px;
+
+}
+.navSwitch
+{
+margin: 0px;
+display: flex;
+justify-content: center;
+}
+.navSwitch h3{
+  margin: 0px;
+}
+.hover:hover{
+  color: white;
 }
 .title{
   width: 400px;
@@ -30,15 +44,25 @@ flex-direction: row;
 justify-content: space-around;
 }
 .polls{
+display: flex;
+flex-direction: column;
  margin: 30px;
 padding: 0px;
 border: 2px solid #009ddc;
 border-radius: 10px;
+border-bottom-right-radius: 0px;
+border-bottom-left-radius: 0px;
 width: 100%;
-height: 80vh;
+max-height: 80vh;
 font-size: 28px;
-} 
-.polls h1{
+}
+
+.pollsList{
+  overflow: scroll;
+ 
+}
+
+.search{
   background-color: #009ddc;
   margin: 0px;
   border-radius: 8px;
@@ -46,7 +70,10 @@ font-size: 28px;
   border-bottom-right-radius: 0px;
   border-bottom: 2px solid #009ddc;
   padding-left: 10px;  
-
+}
+.search input{
+  height: 50%;
+  width: 50%;
 }
 
 
@@ -56,6 +83,7 @@ font-size: 28px;
 .piechart{
 text-align: center;
 width: 100%;
+
 }
 button{
   border-style: none;
@@ -69,17 +97,34 @@ input{
   font-size: 20px;
   width: 80%;
 }
+.search{
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
 
+}
 .login{
   border: 2px solid #6761a8;
   border-radius: 10px;
-  height: 600px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   margin: auto;
   width: 400px;
   background-color: #e7ecef;
 }
-
+.data{
+  border: 2px solid #6761a8;
+  border-radius: 10px;
+  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  width: 600px;
+  background-color: #e7ecef;
+}
 .loginposition{
   z-index: 10; 
   opacity: .3;
@@ -117,7 +162,8 @@ width: 50%;
 }
 .poll{
   display:flex;
-  width: 100%;  
+  width: 100%; 
+ 
 }
 .poll h3{
 
@@ -129,8 +175,10 @@ width: 50%;
 .poll h3:hover{
   background-color:#d1d8db;
 }
+
 .pollSelection{
   flex-grow: 3;
+  
 }
 .vote{
   width:100px;
@@ -139,8 +187,10 @@ width: 50%;
 }
 
 .fullWidth{
-height: 80vh;
+max-height: 80vh;
 width: 100%;
+text-align: center;
+
 }
 .profile{
   

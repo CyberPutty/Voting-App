@@ -7,6 +7,22 @@ class PollNew extends React.Component{
         this.props.resetForm();
     }
 
+    newPoll= (event)=>{ 
+     event.preventDefault(); 
+        const field=[];
+     Array.from(event.target.field).map(function(data){
+         field.push(data.value);
+     });
+    
+    const body={
+        title: event.target.title.value,
+        field: field
+    }
+    console.log(body);
+     this.props.newPoll(body);
+     
+    }
+
 render(){
 
 
@@ -14,7 +30,7 @@ render(){
         <div className="">
         
 <ModalWrapper {...this.props} showOk={false} width={400}>
-<form  method="post" action="/users/posts/new">
+<form  onSubmit={this.newPoll}>
            <div><label>Title: </label><input name="title"/></div>
             {this.props.entries.map(function(entry,index){
                 

@@ -25,7 +25,7 @@ const ModalWrapper= props=>{
 
 
     return(
-        <div className="login wrapper" >
+        <div className={props.size+ ' wrapper'} >
         <header>
         <h1>{props.title}</h1>
         <button onClick={props.hideModal}>Close</button>

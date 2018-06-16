@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  
-  res.render('index', { title: 'Express' });
+router.get('/profile', function(req, res) {
+    console.log(req.user);
+if (req.user){
+       res.json(req.user);
+}
+res.json({failed:'not logged in'});
 });
+
 
 module.exports = router;

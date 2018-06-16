@@ -20,9 +20,14 @@ return(
         }
         return(
                 <div className="userLogin">
+                
                     <h2>logged in as {this.props.username}</h2>
-                  <h3 onClick={this.props.logout}>log out</h3>
-                    <h3 onClick={this.props.redirectHome}>home</h3>
+                    <div className="navSwitch">
+                    <h3 className="hover" onClick={this.props.redirectHome}>Home</h3><h3>|</h3>
+                    <h3 className="hover"onClick={this.props.redirectProfile}>Profile</h3><h3>|</h3>
+                    <h3 className="hover"onClick={this.props.logout}>log out</h3>
+                    </div> 
+                    
                 </div>
         );
 
