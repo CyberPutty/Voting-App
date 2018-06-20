@@ -13,11 +13,14 @@ var authRouter= require('./routes/auth');
 var session = require("express-session");
 
 var app = express();
-
-
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"));
+}
+else{
  app.set('views', path.join(__dirname, 'views'));
  app.set('view engine', 'jade');
+}
+
 
 app.use(logger('dev'));
 app.use(express.json());
